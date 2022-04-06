@@ -199,3 +199,13 @@ fn 並びを逆転() {
     let actual = vec![10, 20, 30].into_iter().rev().collect_vec();
     assert_eq!(vec![30, 20, 10], actual);
 }
+
+#[test]
+/// T[] -> T[]
+fn Vectorの結合() {
+    let mut seed = vec![10, 20, 30];
+    seed.extend(vec![40, 50]);
+    let actual = seed;
+
+    assert_eq!(vec![10, 20, 30, 40, 50], actual);
+}

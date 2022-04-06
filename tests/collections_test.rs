@@ -37,6 +37,14 @@ fn vectorの作成() {
 }
 
 #[test]
+fn rangeの作成() {
+    let range = 0..5;
+
+    let actual = range.collect::<Vec<_>>();
+    assert_eq!(vec![0, 1, 2, 3, 4], actual);
+}
+
+#[test]
 /// T[] -> U[]
 fn 別の値に変換() {
     let actual = vec![10, 20, 30].iter().map(|x| x * 10).collect_vec();

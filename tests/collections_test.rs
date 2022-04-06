@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 
+use std::collections::HashMap;
 use std::fmt::Display;
 
 use itertools::Itertools;
@@ -148,7 +149,19 @@ fn 条件を指定して重複を削除() {
 }
 
 #[test]
-/// T[] -> {K: t[]}
+/// T[] -> {K: T}
+fn インデクシング() {
+    let actual = vec![10, 11, 22, 30]
+        .into_iter()
+        .fold(HashMap::new(), |mut acc, c| {
+            acc.insert(c % 10, c);
+            acc
+        });
+    assert_eq!(hashmap! {0 => 30, 1 => 11, 2 => 22}, actual);
+}
+
+#[test]
+/// T[] -> {K: T[]}
 fn グルーピング() {
     let actual = vec![10, 11, 22, 30]
         .into_iter()

@@ -45,6 +45,20 @@ fn rangeの作成() {
 }
 
 #[test]
+fn sliceをvectorに変換() {
+    let s = &[1, 2, 3];
+    let actual = s.to_vec();
+    assert_eq!(vec![1, 2, 3], actual);
+}
+
+#[test]
+fn vectorをsliceに変換() {
+    let v = vec![1, 2, 3];
+    let actual = v.as_slice();
+    assert_eq!(&[1, 2, 3], actual);
+}
+
+#[test]
 /// T[] -> U[]
 fn 別の値に変換() {
     let actual = vec![10, 20, 30].iter().map(|x| x * 10).collect_vec();

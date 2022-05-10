@@ -2,6 +2,7 @@
 
 use std::collections::HashMap;
 use std::fmt::Display;
+use std::iter;
 
 use itertools::Itertools;
 use maplit::hashmap;
@@ -42,6 +43,14 @@ fn rangeの作成() {
 
     let actual = range.collect::<Vec<_>>();
     assert_eq!(vec![0, 1, 2, 3, 4], actual);
+}
+
+#[test]
+fn 同じ値を繰り返すIteratorを作成() {
+    let endless_tadashi = iter::repeat("tadashi");
+
+    let actual = endless_tadashi.take(3).collect_vec();
+    assert_eq!(vec!["tadashi", "tadashi", "tadashi"], actual);
 }
 
 #[test]

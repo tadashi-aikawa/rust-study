@@ -96,7 +96,7 @@ fn 条件にあう最初の値を返す() {
 
 #[test]
 /// T[] -> T[]
-fn 有効な要素のみを抽出() {
+fn 有効値の中身のみをフィルタ() {
     let actual = vec![Some(10), None, Some(30)]
         .into_iter()
         .flatten()
@@ -222,6 +222,34 @@ fn 初期値を指定して畳み込み() {
 fn 最初の要素を初期値として畳み込み() {
     let actual = vec![10, 20, 30].into_iter().reduce(|a, b| a - b);
     assert_eq!(Some(-40), actual);
+}
+
+#[test]
+/// T[] -> T
+fn 最大値の取得() {
+    let actual = vec![30, 10, 20].into_iter().max();
+    assert_eq!(Some(30), actual);
+}
+
+#[test]
+/// T[] -> T
+fn 最小値の取得() {
+    let actual = vec![30, 10, 20].into_iter().min();
+    assert_eq!(Some(10), actual);
+}
+
+#[test]
+/// T[] -> T
+fn 変換結果が最大となる値の取得() {
+    let actual = vec![51, 43, 32].into_iter().max_by_key(|x| x % 10);
+    assert_eq!(Some(43), actual);
+}
+
+#[test]
+/// T[] -> T
+fn 変換結果が最小となる値の取得() {
+    let actual = vec![51, 43, 32].into_iter().min_by_key(|x| x % 10);
+    assert_eq!(Some(51), actual);
 }
 
 #[test]

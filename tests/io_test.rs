@@ -3,7 +3,7 @@
 mod シンプル {
     use std::fs::File;
     use std::io;
-    use std::io::{BufWriter, Read, Write};
+    use std::io::Write;
 
     #[test]
     fn Writeを使ってVecに書き込み() -> io::Result<()> {

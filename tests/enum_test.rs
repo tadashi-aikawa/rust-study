@@ -34,6 +34,6 @@ mod シンプル {
             id: 10,
             name: "mike".to_string(),
         };
-        assert_eq!(get_identifier(Animal::Cat(cat)), "mike".to_string());
+        assert_eq!(get_identifier(Animal::Cat(cat)), "10: mike".to_string());
     }
 }

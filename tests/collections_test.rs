@@ -46,6 +46,18 @@ fn rangeの作成() {
 }
 
 #[test]
+fn indexと一緒にイテレート() {
+    let values = vec!["aaa", "iii", "uuu"];
+
+    let actual = values
+        .iter()
+        .enumerate()
+        .map(|(i, v)| format!("{}: {}", i, v))
+        .collect::<Vec<_>>();
+    assert_eq!(vec!["0: aaa", "1: iii", "2: uuu"], actual);
+}
+
+#[test]
 fn 同じ値を繰り返すIteratorを作成() {
     let endless_tadashi = iter::repeat("tadashi");
 

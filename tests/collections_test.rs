@@ -46,7 +46,7 @@ fn rangeの作成() {
 }
 
 #[test]
-fn indexと一緒にイテレート() {
+fn index付きiteratorの作成() {
     let values = vec!["aaa", "iii", "uuu"];
 
     let actual = values

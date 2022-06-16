@@ -166,4 +166,16 @@ mod Enum {
             serde_json::from_str(r#"{"pet1":"Dog","pet2":"nyan"}"#).unwrap()
         );
     }
+
+    #[test]
+    fn Variantをstringにserialize() {
+        let expected = "nyan";
+        assert_eq!(expected, serde_lexpr::to_string(&Animal::Cat).unwrap());
+    }
+
+    #[test]
+    fn stringをVariantにdeserialize() {
+        let expected = Animal::Cat;
+        assert_eq!(expected, serde_lexpr::from_str("nyan").unwrap());
+    }
 }

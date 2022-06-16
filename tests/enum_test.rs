@@ -13,13 +13,13 @@ struct Cat {
 }
 
 enum Animal {
+    #[allow(dead_code)]
     Dog(Dog),
     Cat(Cat),
 }
 
 mod シンプル {
     use super::*;
-    use std::fmt::format;
 
     #[test]
     fn 構造体を外部定義にしてenumできる() {

@@ -273,10 +273,24 @@ fn 並びを逆転() {
 
 #[test]
 /// T[] -> T[]
-fn Vectorの結合() {
+fn Vectorの結合_mutable() {
     let mut seed = vec![10, 20, 30];
     seed.extend(vec![40, 50]);
     let actual = seed;
+
+    assert_eq!(vec![10, 20, 30, 40, 50], actual);
+}
+
+#[test]
+/// T[] -> T[]
+fn Vectorの結合_immutable() {
+    let seed1 = vec![10, 20, 30];
+    let seed2 = vec![40, 50];
+
+    // seed1[..] -> [i32]
+    // &seed1[..] -> &[i32]
+    // [&seed1[..], &seed2[..]] -> [&[i32]; 2]
+    let actual = [&seed1[..], &seed2[..]].concat();
 
     assert_eq!(vec![10, 20, 30, 40, 50], actual);
 }

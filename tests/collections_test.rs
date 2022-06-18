@@ -294,3 +294,12 @@ fn Vectorの結合_immutable() {
 
     assert_eq!(vec![10, 20, 30, 40, 50], actual);
 }
+
+#[test]
+fn Vecの中身を実体化() {
+    let s1 = &"aaa".to_string();
+    let s2 = &"bbb".to_string();
+    let actual = vec![s1, s2].into_iter().cloned().collect_vec();
+
+    assert_eq!(vec!["aaa".to_string(), "bbb".to_string()], actual);
+}

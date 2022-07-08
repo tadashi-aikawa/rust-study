@@ -3,6 +3,7 @@
 use std::collections::HashMap;
 use std::fmt::Display;
 use std::iter;
+use std::ops::Not;
 
 use itertools::Itertools;
 use maplit::hashmap;
@@ -302,4 +303,23 @@ fn Vecの中身を実体化() {
     let actual = vec![s1, s2].into_iter().cloned().collect_vec();
 
     assert_eq!(vec!["aaa".to_string(), "bbb".to_string()], actual);
+}
+
+#[test]
+fn Vecのクローン() {
+    let xs = vec!["a", "b"];
+    let ys = xs.to_vec();
+
+    assert_eq!(xs, ys);
+}
+
+#[test]
+fn VecをOption_Vecに変換() {
+    let xs = vec!["a"];
+    let actual1 = xs.is_empty().not().then_some(xs);
+    assert_eq!(Some(vec!["a"]), actual1);
+
+    let empty: Vec<&str> = vec![];
+    let actual1 = empty.is_empty().not().then_some(empty);
+    assert_eq!(None, actual1);
 }

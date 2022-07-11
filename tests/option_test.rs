@@ -1,7 +1,5 @@
 #![allow(non_snake_case)]
 
-use itertools::Itertools;
-
 #[test]
 fn Optionの中身を実体化() {
     let s1 = &"aaa".to_string();

@@ -1,12 +1,12 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fmt::Display;
 use std::iter;
 use std::ops::Not;
 
 use itertools::Itertools;
-use maplit::hashmap;
+use maplit::{hashmap, hashset};
 
 fn error_msg<T: Display>(x: T) -> String {
     format!("Error: {}", x)
@@ -322,4 +322,13 @@ fn VecをOption_Vecに変換() {
     let empty: Vec<&str> = vec![];
     let actual1 = empty.is_empty().not().then_some(empty);
     assert_eq!(None, actual1);
+}
+
+#[test]
+fn VecをSetとして重複削除() {
+    let xs = vec!["a", "b", "a", "c", "b", "a"];
+    assert_eq!(
+        hashset!["a", "b", "c"],
+        xs.into_iter().collect::<HashSet<_>>()
+    );
 }

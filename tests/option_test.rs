@@ -18,3 +18,12 @@ fn Optionの中身をClone() {
 
     assert_eq!(b, c);
 }
+
+#[test]
+fn OptionをResultに変換() {
+    let actual_some = Some("some").ok_or("error");
+    assert_eq!(Ok("some"), actual_some);
+
+    let actual_none: Result<&str, &str> = None.ok_or("error");
+    assert_eq!(Err("error"), actual_none);
+}

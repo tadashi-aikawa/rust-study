@@ -297,6 +297,20 @@ fn Vectorの結合_immutable() {
 }
 
 #[test]
+/// (T, T[]) -> T[]
+fn 値とVectorの結合() {
+    let seed1 = 10;
+    let seed2 = vec![20, 30];
+
+    // seed1[..] -> [i32]
+    // &seed1[..] -> &[i32]
+    // [&seed1[..], &seed2[..]] -> [&[i32]; 2]
+    let actual = [&[seed1], &seed2[..]].concat();
+
+    assert_eq!(vec![10, 20, 30], actual);
+}
+
+#[test]
 fn Vecの中身を実体化() {
     let s1 = &"aaa".to_string();
     let s2 = &"bbb".to_string();

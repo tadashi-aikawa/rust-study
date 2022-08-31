@@ -5,7 +5,7 @@ use std::fmt::Display;
 use std::iter;
 use std::ops::Not;
 
-use itertools::Itertools;
+use itertools::{izip, Itertools};
 use maplit::{hashmap, hashset};
 
 fn error_msg<T: Display>(x: T) -> String {
@@ -345,4 +345,16 @@ fn VecをSetとして重複削除() {
         hashset!["a", "b", "c"],
         xs.into_iter().collect::<HashSet<_>>()
     );
+}
+
+#[test]
+fn 複数のVecをzipして構造体Vecを作成() {
+    let xs = vec!["a", "b", "c"];
+    let ys = vec!["A", "B", "C"];
+    let zs = vec![1, 2, 3];
+
+    let actual = izip!(&xs, &ys, &zs)
+        .map(|(&a, &b, &c)| (a, b, c))
+        .collect_vec();
+    assert_eq!(actual, vec![("a", "A", 1), ("b", "B", 2), ("c", "C", 3)])
 }

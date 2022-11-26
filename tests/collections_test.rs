@@ -98,6 +98,13 @@ fn 条件にあう値のみをフィルタ() {
 }
 
 #[test]
+/// T[] -> T[]
+fn 先頭の数要素を取り除いた残りを返す() {
+    let actual = vec![10, 20, 30, 40, 50].into_iter().skip(3).collect_vec();
+    assert_eq!(vec![40, 50], actual);
+}
+
+#[test]
 /// T[] -> Option[T]
 fn 条件にあう最初の値を返す() {
     let actual = vec![10, 20, 30].into_iter().find(|&x| x > 20);

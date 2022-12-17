@@ -1,7 +1,11 @@
 #![allow(non_snake_case)]
 
-use std::fmt::{Display, Formatter};
+extern crate core;
+
+use enum_primitive_derive::Primitive;
+use num_traits::FromPrimitive;
 use serde::{Deserialize, Serialize};
+use std::fmt::{Display, Formatter};
 
 #[derive(Debug)]
 struct Dog {
@@ -34,6 +38,11 @@ impl Display for Lang {
     }
 }
 
+#[derive(Primitive, PartialEq, Debug)]
+enum Number {
+    One = 1,
+    Ten = 10,
+}
 
 mod シンプル {
     use super::*;
@@ -58,5 +67,11 @@ mod シンプル {
     fn enumを文字列として出力できる() {
         let actual = format!("{}", Lang::Ja);
         assert_eq!("ja", actual);
+    }
+
+    #[test]
+    fn i32をenumに変換できる() {
+        let actual: Option<Number> = Number::from_i32(10);
+        assert_eq!(Some(Number::Ten), actual);
     }
 }

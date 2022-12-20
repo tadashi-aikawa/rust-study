@@ -187,6 +187,11 @@ fn ソート() {
 fn 重複を削除() {
     let actual = vec![10, 20, 10, 30, 20].into_iter().unique().collect_vec();
     assert_eq!(vec![10, 20, 30], actual);
+
+    // primitive型の場合はsort -> dedupでもOK
+    let mut actual = vec![10, 20, 10, 30, 20].into_iter().sorted().collect_vec();
+    actual.dedup();
+    assert_eq!(vec![10, 20, 30], actual);
 }
 
 #[test]
@@ -364,4 +369,26 @@ fn 複数のVecをzipして構造体Vecを作成() {
         .map(|(&a, &b, &c)| (a, b, c))
         .collect_vec();
     assert_eq!(actual, vec![("a", "A", 1), ("b", "B", 2), ("c", "C", 3)])
+}
+
+#[test]
+fn 浮動小数点型のソート() {
+    let xs = vec![1.0, 50.0, 15.0, 25.0, 30.0];
+    let actual = xs
+        .into_iter()
+        .sorted_by(|a, b| a.partial_cmp(b).unwrap())
+        .collect_vec();
+    assert_eq!(actual, vec![1.0, 15.0, 25.0, 30.0, 50.0]);
+}
+
+#[test]
+fn Setの要素を取得して元から削除() {
+    let s1 = String::from("aa");
+    let mut xs = vec![s1].into_iter().collect::<HashSet<String>>();
+
+    let s2 = String::from("aa");
+    let a = xs.take(&s2).unwrap();
+
+    assert_eq!(a, "aa".to_string());
+    assert_eq!(xs.len(), 0);
 }

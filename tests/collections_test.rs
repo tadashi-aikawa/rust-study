@@ -372,6 +372,15 @@ fn 複数のVecをzipして構造体Vecを作成() {
 }
 
 #[test]
+fn 条件を満たす要素のVecと条件を満たさない要素のVecに分割() {
+    let xs = vec![1, 2, 3, 4, 5];
+
+    let (even, odd): (Vec<_>, Vec<_>) = xs.into_iter().partition(|x| x % 2 == 0);
+    assert_eq!(even, vec![2, 4]);
+    assert_eq!(odd, vec![1, 3, 5]);
+}
+
+#[test]
 fn 浮動小数点型のソート() {
     let xs = vec![1.0, 50.0, 15.0, 25.0, 30.0];
     let actual = xs

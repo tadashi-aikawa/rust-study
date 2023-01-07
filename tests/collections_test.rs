@@ -39,6 +39,18 @@ fn vectorの作成() {
 }
 
 #[test]
+fn 連続した数のVecを作成() {
+    let actual = (1..=5).collect::<Vec<_>>();
+    assert_eq!(vec![1, 2, 3, 4, 5], actual)
+}
+
+#[test]
+fn 一定間隔ごとのVecを作成() {
+    let actual = (10..=50).step_by(10).collect::<Vec<_>>();
+    assert_eq!(vec![10, 20, 30, 40, 50], actual)
+}
+
+#[test]
 fn rangeの作成() {
     let range = 0..5;
 

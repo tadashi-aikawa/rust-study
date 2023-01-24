@@ -406,6 +406,13 @@ fn 条件を満たす要素のVecと条件を満たさない要素のVecに分�
 }
 
 #[test]
+fn HashMapを値のVecに変換() {
+    let map = hashmap! {101 => 1, 102 => 2, 103 => 3};
+    let actual = map.into_values().sorted().collect_vec();
+    assert_eq!(actual, vec![1, 2, 3]);
+}
+
+#[test]
 fn 浮動小数点型のソート() {
     let xs = vec![1.0, 50.0, 15.0, 25.0, 30.0];
     let actual = xs

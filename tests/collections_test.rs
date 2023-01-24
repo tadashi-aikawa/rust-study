@@ -228,6 +228,12 @@ fn 条件を指定して重複を削除() {
 fn インデクシング() {
     let actual = vec![10, 11, 22, 30]
         .into_iter()
+        .map(|x| (x % 10, x))
+        .collect::<HashMap<_, _>>();
+    assert_eq!(hashmap! {0 => 30, 1 => 11, 2 => 22}, actual);
+
+    let actual = vec![10, 11, 22, 30]
+        .into_iter()
         .fold(HashMap::new(), |mut acc, c| {
             acc.insert(c % 10, c);
             acc
